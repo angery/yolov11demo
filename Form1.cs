@@ -6,6 +6,7 @@ using OpenCvSharp.Dnn;
 using System.Text;
 using System.Text.RegularExpressions;
 using DirectShowLib;
+using System;
 namespace Yolov11
 {
     public partial class Form1 : Form
@@ -36,7 +37,7 @@ namespace Yolov11
         private List<VideoCapture> captures = new List<VideoCapture>();
         private List<System.Windows.Forms.Timer> timers = new List<System.Windows.Forms.Timer>();
 
-
+        private bool isCloseCameraFlag = true;
         public Form1()
         {
             InitializeComponent();
@@ -89,6 +90,7 @@ namespace Yolov11
 
         private void button2_Click(object sender, EventArgs e)
         {
+            closeCamera();
             if (model_path == null)
             {
                 MessageBox.Show("请先加载模型", "PROMPT");
@@ -98,10 +100,8 @@ namespace Yolov11
             ofd.Filter = "*.*|*.bmp;*.jpg;*.jpeg;*.tiff;*.tiff;*.png";
             if (ofd.ShowDialog() != DialogResult.OK) return;
 
-            pictureBox1.Image = null;
-
-
-            pictureBox1.Image = new Bitmap(ofd.FileName);
+            //pictureBox1.Image = null;
+            //pictureBox1.Image = new Bitmap(ofd.FileName);
             Mat image = new Mat(ofd.FileName);
             objectDetect(image);
         }
@@ -111,8 +111,8 @@ namespace Yolov11
         /// <param name="image_path"></param>
         private void objectDetect(Mat image)
         {
+            
             labelUsedTime.Text = "";
-            Application.DoEvents();
             //图片缩放
             int height = image.Rows;
             int width = image.Cols;
@@ -142,9 +142,9 @@ namespace Yolov11
             }
 
             List<NamedOnnxValue> input_container = new List<NamedOnnxValue>
-            {
-                NamedOnnxValue.CreateFromTensor("images", input_tensor)
-            };
+        {
+            NamedOnnxValue.CreateFromTensor("images", input_tensor)
+        };
 
             //推理
             dt1 = DateTime.Now;
@@ -173,10 +173,10 @@ namespace Yolov11
                 int _height = (int)(rectData[3] * ratio_height);
 
                 detResults.Add(new DetectionResult(
-                   maxIndex,
-                   class_names[maxIndex],
-                   new Rect(_centerX - _width / 2, _centerY - _height / 2, _width, _height),
-                   score));
+                    maxIndex,
+                    class_names[maxIndex],
+                    new Rect(_centerX - _width / 2, _centerY - _height / 2, _width, _height),
+                    score));
             }
 
             //NMS
@@ -190,9 +190,15 @@ namespace Yolov11
                 Cv2.PutText(result_image, $"{r.Class}:{r.Confidence:P0}", new OpenCvSharp.Point(r.Rect.TopLeft.X, r.Rect.TopLeft.Y - 10), HersheyFonts.HersheySimplex, 1, Scalar.Red, 2);
                 Cv2.Rectangle(result_image, r.Rect, Scalar.Red, thickness: 2);
             }
-
-            pictureBox1.Image = new Bitmap(result_image.ToMemoryStream());
+            using (var ms = result_image.ToMemoryStream())
+            {
+                Bitmap bitmap = (Bitmap)Image.FromStream(ms);
+                pictureBox1.Image = bitmap;
+            }
+           
             labelUsedTime.Text = "推理耗时:" + (dt2 - dt1).TotalMilliseconds + "ms";
+            
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -240,6 +246,7 @@ namespace Yolov11
         //释放摄像头资源
         private void closeCamera()
         {
+            isCloseCameraFlag = true;
             // 释放摄像头资源
             // 释放摄像头资源和停止定时器
             if (null != captures && captures.Count > 0)
@@ -356,19 +363,20 @@ namespace Yolov11
             {
                 MessageBox.Show("无法打开摄像头");
             }
+            isCloseCameraFlag = false;
             //labelList[selectDeviceIndex].Text = deviceName;
             // 创建定时器，用于定时从摄像头读取帧并更新PictureBox
             System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
             timer.Interval = 60; // 约60帧/秒
-            timer.Tick += (sender, e) => UpdateFrame(pictureBox1, capture, selectDeviceIndex);
+            timer.Tick += (sender, e) => UpdateFrame(capture);
             timer.Start();
             timers.Add(timer);
         }
 
-        private void UpdateFrame(PictureBox pictureBox, VideoCapture capture, int indexCnt)
+        private void UpdateFrame(VideoCapture capture)
         {
             Mat frame = new Mat();
-            if (capture.Read(frame))
+            if (capture.Read(frame) && !isCloseCameraFlag)
             {
                 //目标检测 识别
                 objectDetect(frame);
