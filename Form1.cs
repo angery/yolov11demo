@@ -112,7 +112,6 @@ namespace Yolov11
         private void objectDetect(Mat image)
         {
             
-            labelUsedTime.Text = "";
             //图片缩放
             int height = image.Rows;
             int width = image.Cols;
@@ -197,7 +196,6 @@ namespace Yolov11
             }
            
             labelUsedTime.Text = "推理耗时:" + (dt2 - dt1).TotalMilliseconds + "ms";
-            
             
         }
 
