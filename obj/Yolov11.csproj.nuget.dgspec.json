@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\code\\midu\\yolov11demo\\yolov11demo_gitee\\yolov11demo\\Yolov11.csproj": {}
+    "D:\\code\\midu\\yolov11demo\\yolov11demo_github\\yolov11demo\\Yolov11.csproj": {}
   },
   "projects": {
-    "D:\\code\\midu\\yolov11demo\\yolov11demo_gitee\\yolov11demo\\Yolov11.csproj": {
+    "D:\\code\\midu\\yolov11demo\\yolov11demo_github\\yolov11demo\\Yolov11.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\code\\midu\\yolov11demo\\yolov11demo_gitee\\yolov11demo\\Yolov11.csproj",
+        "projectUniqueName": "D:\\code\\midu\\yolov11demo\\yolov11demo_github\\yolov11demo\\Yolov11.csproj",
         "projectName": "Yolov11",
-        "projectPath": "D:\\code\\midu\\yolov11demo\\yolov11demo_gitee\\yolov11demo\\Yolov11.csproj",
+        "projectPath": "D:\\code\\midu\\yolov11demo\\yolov11demo_github\\yolov11demo\\Yolov11.csproj",
         "packagesPath": "C:\\Users\\midu\\.nuget\\packages\\",
-        "outputPath": "D:\\code\\midu\\yolov11demo\\yolov11demo_gitee\\yolov11demo\\obj\\",
+        "outputPath": "D:\\code\\midu\\yolov11demo\\yolov11demo_github\\yolov11demo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

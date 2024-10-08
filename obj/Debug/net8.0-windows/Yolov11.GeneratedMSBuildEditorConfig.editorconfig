@@ -14,6 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Yolov11
-build_property.ProjectDir = D:\code\midu\yolov11demo\yolov11demo_gitee\yolov11demo\
+build_property.ProjectDir = D:\code\midu\yolov11demo\yolov11demo_github\yolov11demo\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
