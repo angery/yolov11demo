@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "tko3pUHaVlg=",
+  "success": true,
+  "projectFilePath": "D:\\code\\midu\\yolov11demo\\yolov11demo_gitee\\yolov11demo\\Yolov11.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\midu\\.nuget\\packages\\directshowlib.standard\\2.1.0\\directshowlib.standard.2.1.0.nupkg.sha512",
+    "C:\\Users\\midu\\.nuget\\packages\\microsoft.ml.onnxruntime\\1.19.2\\microsoft.ml.onnxruntime.1.19.2.nupkg.sha512",
+    "C:\\Users\\midu\\.nuget\\packages\\microsoft.ml.onnxruntime.managed\\1.19.2\\microsoft.ml.onnxruntime.managed.1.19.2.nupkg.sha512",
+    "C:\\Users\\midu\\.nuget\\packages\\opencvsharp4\\4.10.0.20240616\\opencvsharp4.4.10.0.20240616.nupkg.sha512",
+    "C:\\Users\\midu\\.nuget\\packages\\opencvsharp4.runtime.win\\4.10.0.20240616\\opencvsharp4.runtime.win.4.10.0.20240616.nupkg.sha512",
+    "C:\\Users\\midu\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
+    "C:\\Users\\midu\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
+    "C:\\Users\\midu\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\midu\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\midu\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
